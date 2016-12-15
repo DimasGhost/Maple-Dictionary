@@ -1,0 +1,136 @@
+Basics
+	with (LinearAlgebra) // Use methods of LinearAlgebra module
+	a := 5 // Variable assignment
+	a := 'a' // Variable reset
+	restart // Program reset
+	(Ctrl + Shift + _) // For writing indexes
+	rand() // Get random number
+	% // Get last output
+
+Matrices
+	Matrix([[1, 2], [3, 4]]) // Create matrix
+	< <1 | 2>, <3 | 4> > // Create matrix
+	ZeroMatrix(3, 3) // Create zero matrix
+	RandomMatrix(3, 3) // Random matrix
+	RandomMatrix(3, 3, density = .75, generator = 0 ..1.5) // ?
+	DiagonalMatrix([1, 2, 3]) // Zero matrix with given elements on diagonal
+	Dimension(A) // Gets array with dimensions of matrix
+	ColumnDimension(A) // Number of matrix columns
+	RowDimension(A) // Number of matrix rows
+	Determinant(A) // Determinant of matrix
+	A.B // Matrix multiply
+	A*~B // Multiply elements of matrices
+	SubMatrix(A, 1..3, 2..4) // Gets submatrix
+	SubMatrix(A, [1, 3], [2, 4]) // Gets submatrix
+	RowOperation(A, [1, 2]) // Returns new matrix with 1 and 2 rows swapped
+	RowOperation(A, 4, 2) // Returns new matrix with 4 row multiplied by 2
+	RowOperation(A, [2, 3], 2) // Returns new matrix with 3rd row added to 2nd row multiplied by 2
+	ColumnOperation // RowOperation analog for columns
+	Row(B, 1) // First row of matrix
+	Row(B, 1 .. 2) // 1..2 rows of matrix
+	Column // Row analog for columns
+	GaussianElimination(A) // Stair-step form of matrix
+	MatrixInverse(A) // Inversed matrix
+	IdentityMatrix(3) // Matrix with elements equal to 1 on diagonal
+	<M, E> // Join matrix left-right
+	ReducedRowEchelonForm(A) // Canonic form of matrix
+	Minor(M, 2, 2) // Minor wich calculating by deleting 2nd row and 2nd column
+	Transpose(M) // Transpose matrix
+	Matrix([seq([seq(Minor(M, i, j) * (-1) ^ (i + j), i = 1 ..3)], j = 1 ..3)]) // Allied matrix
+	LinearSolve(A, B) // Solves AX = B
+
+Plots
+	plot(A) // Draw plot for matrix A
+	plot([sinh(x), cosh(x)], x = -2..2) // Draw plot for functions on given interval
+	plot([x*x], x=-5..5, color=[blue], axes=boxed) // Set function color, create border of matrix
+	with(plots) // Use methods of plots module
+	listplot(A) // Draw plot for array  A
+	listplot(A, connect = false) // Do not create segments between points
+	listplot([A, B, C]) // Draw plot for a few arrays
+
+Geometry
+	with(geometry) // Use methods of geometry module
+	point(P, x, y) // Create point P
+	circle(C, point(O, 0, 0), 1) // Create circle C with center in point O(0, 0) and radius 1
+	draw([A, B, C], color = [red, blue, blue]) // Draw graphic elements A, B, C with given colors
+	line(L, [P1, P2]) // Create line L passing through the points P1 и P2
+	Equation(L) // Gives the equation of line L
+	FindAngle(L1, L2) // Angle between lines
+	AreParallel(L1, L2) // Check if lines are parallel
+	ArePerpendicular(L1, L2) // Check if lines are perpendicular
+	ParallelLine(LP, L, A) // Generate line LP parallel to L and passing through the point A
+	PerpendicularLine(LP, L, A) // Generate line LP perpendicular to L and passing through the point A
+	distance(L, A) // Distance between line L and point A
+	line(L, x + y = 0) // Create line L by given equation
+	triangle(T, [A, B, C]) // Create triangle by given three points
+	coordinates(P) // Coordinates of points
+	detail(T) // Details of some elements
+	area(T) // Area of some element
+	perimeter(T) // Perimeter of some element
+	intersection(Q, L, C) // Q will be intersection of L and C
+
+3d geometry
+	with(geom3d) // Use methods of geom3d module
+	sphere(S, a^2 + b^2 + c^2 = 4) // Create sphere by given equation
+	plane(P, 2x + 3y + 4z + 5 = 0) // Plane by equation
+	plane(P, [A, n]) // Plane by point and normal (perpendicular vector)
+	plane(P, [L1, L2]) // Plane passing through two given lines
+	plane(P, [A, B, C]) // Plane passing through three given points
+	plot3d() // plot analog for 3d
+
+Expressions
+	evalf(pi) // Calculates real value (index for function will set number of digits before dot)
+	solve(x ^ 5 = 10) // Solves equation
+	s := solve({x + y + z = 1, x - y = 2, x - z + y = 3}) // Solves equation system
+	subs(s, [x, y, z]) // Creates array with arguments substituted in given order
+	subs(x = 2, x^2 + x * t) // Example of substitution
+	simplify() // Simplify the expression
+	factor() // Factorize the expression
+	expand() // Expand brackets of exprssion
+	[seq(x * x, x = 1 .. 3)] // Generates array of first three numbers in second degree
+	f := n -> n * n // Lambda function (f(n) = n * n)
+	isolve(x > 5) // Solve the equation in integer numbers
+	isolve({1 / i > 1 / (i + 1), i > 0}) // Solve the system of equations in integer numbers
+	limit(1/x, x=0, real) // Find the limit of expression where x goes to 0
+	limit(1/x, x=infinity, real) // x can be number, infinity or -infinity
+	limit(1/x, x=5, left) // Direction can be left, right, real, complex
+	g := x->piecewise(x > 0, x, x <= 0, -x) // Piecewise function
+	discont(f(x), x) // Finds discontinuities of F function
+	numer(x) // Give numerator
+	denom(x) // Give denumerator
+	diff(f(x), x) // Give derivative of function f(x) by x
+	f'(x) // Same
+	coeff(2x + 3y + 4, x) // Finds coefficent standing near x
+	coeff(2x + 3y + 4, y, 0) // Shows espression without y
+	int(x^2, x) // Finds integral of x^2 function by x
+	int(x^2, x=a..b) // Finds integral of x^2 function by x [a, b]
+	extrema(x^2, {}, x) // Finds extremums of the function
+	minimize(cos(x), x=1..5) // Finds minimums on [1..5]
+	minimize(cos(x), x=1..5, location) // Show x
+	maximize // Same, but maximums
+
+Complex numbers
+	z := 1 + 2 I // Сreate complex number
+	Complex(1, 2) // Same
+	abs(z) // Absolute of complex numbe
+	argument(z) // Argument (angle) of complex number
+	conjugate(z) // Conjugate to z
+	Re(z) // Real part
+	Im(z) // Imaginary part
+	polar(z) // Polar representation
+	evalc(z) // Calculatings with complex numbers
+
+Functions and operators
+	// Example of function
+	f := proc(a, b)
+		local i;
+		if a = b then
+			print('equal');
+		else;
+			print('unequal');
+		end if;
+		for i from a to b do
+			print(i);
+		od;
+		return a;
+	end
